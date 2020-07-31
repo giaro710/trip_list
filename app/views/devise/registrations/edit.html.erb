@@ -4,6 +4,16 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+
+    <%= f.input :first_name,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "first_name" } %>
+    <%= f.input :last_name,
+                input_html: { type: 'number '},
+                required: false,
+                input_html: { autocomplete: "last_name" } %>
+    <%= f.input :photo, as: :file, required: false %>
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
