@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+  <h1><%= current_user.first_name %></h1>
+
+  <h1><%= current_user.last_name %></h1>
+
+  <h1><%= current_user.email %></h1>
+
+  <% if current_user.photo.attached? %>
+    <div>
+      <%= cl_image_tag(current_user.photo.key,
+            width: 320, height: 320, crop: :fill, radius: :max, background: "white") %>
+    </div>
+  <% else %>
+    <div>
+      <%= cl_image_tag "no-user-image-square_xfjjjx", width: 320, height: 320, crop: :fill, radius: :max, background: "#7dc2af" %>
+    </div>
+
+  <% end %>
+
+<% else %>
+
+  <p>Please login</p>
+
+<% end %>
+
+<%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary"  %>
