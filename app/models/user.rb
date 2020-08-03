@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
+  has_many :trips
+
+
   has_one_attached :photo
 
   validates :first_name, length: { in: 1..30 }
