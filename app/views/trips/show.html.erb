@@ -1,0 +1,12 @@
+<h1><%= @trip.name %></h1>
+
+<p><%= @trip.destination %></p>
+<p><%= @trip.date %></p>
+
+
+<p><%= @trip.user.id %>) <%= @trip.user.first_name %> <%= @trip.user.last_name %></p>
+<p><%= @user.email %></p>
+
+<%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger"  %>
+
+<%= link_to "< Back", trips_path, class: "btn btn-secondary"  %>
