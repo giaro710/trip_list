@@ -6,9 +6,22 @@ class TripsController < ApplicationController
   def index
     # @trips = Trip.all
     @trips = policy_scope(Trip)
+
+    # @trips = Trip.geocoded # returns trips with coordinates
+
+    @markers = @trips.map do |trip|
+      {
+        lat: trip.latitude,
+        lng: trip.longitude
+      }
+    end
   end
 
   def show
+    @markers = {
+      lat: @trip.latitude,
+      lng: @trip.longitude
+    }
   end
 
   def new

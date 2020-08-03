@@ -4,7 +4,7 @@ class TripPolicy < ApplicationPolicy
       if user.administrator?
         scope.all
       else
-        scope.where(user: user)
+        scope.where(user: user).geocoded
       end
     end
   end
