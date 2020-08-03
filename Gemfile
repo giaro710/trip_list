@@ -31,6 +31,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Devise
 gem 'devise'
 
+# Pundit
+gem 'pundit'
+
+
 # Cloudinary
 gem 'cloudinary', '~> 1.12.0'
 
