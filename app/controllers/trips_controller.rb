@@ -6,9 +6,20 @@ class TripsController < ApplicationController
   def index
     # @trips = Trip.all
     @trips = policy_scope(Trip)
+
+    @markers = @trips.map do |trip|
+      {
+        lat: trip.latitude,
+        lng: trip.longitude
+      }
+    end
   end
 
   def show
+    # @markers = {
+    #   lat: @trip.latitude,
+    #   lng: @trip.longitude
+    # }
   end
 
   def new

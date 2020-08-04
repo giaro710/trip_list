@@ -1,19 +1,39 @@
-<h1><%= @trip.name %></h1>
+<div class="container">
 
-<p><%= @trip.destination %></p>
-<p><%= @trip.date %></p>
+  <h1><%= @trip.name %></h1>
+
+  <div class="d-flex justify-content-between">
+    <div id="map"
+           style="width: 400px; height: 600px; border: solid 5px grey;"
+           data-markers="<%= @markers.to_json %>"
+           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    <div class="info">
+      <p><%= @trip.destination %></p>
+      <p><%= @trip.date %></p>
+      <p><%= @trip.longitude %></p>
+      <p><%= @trip.latitude %></p>
+      <p><%= @markers %></p>
 
 
-<p><%= @trip.user.id %>) <%= @trip.user.first_name %> <%= @trip.user.last_name %></p>
-<p><%= @user.email %></p>
+      <p><%= @trip.user.id %>) <%= @trip.user.first_name %> <%= @trip.user.last_name %></p>
+      <p><%= @user.email %></p>
 
 
-<% if policy(@trip).edit? %>
-  <%= link_to "Edit", edit_trip_path(@trip), class: "btn btn-warning" %>
-<% end %>
+      <% if policy(@trip).edit? %>
+        <%= link_to "Edit", edit_trip_path(@trip), class: "btn btn-warning" %>
+      <% end %>
 
-<% if policy(@trip).destroy? %>
-  <%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger"  %>
-<% end %>
+      <% if policy(@trip).destroy? %>
+        <%= link_to "Delete", trip_path(@trip), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger"  %>
+      <% end %>
 
-<%= link_to "< Back", trips_path, class: "btn btn-secondary"  %>
+      <%= link_to "< Back", trips_path, class: "btn btn-secondary"  %>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>

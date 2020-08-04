@@ -2,7 +2,7 @@
 
 <%= simple_form_for(@trip) do |f| %>
   <%= f.input :name %>
-  <%= f.input :destination %>
+  <%= f.input :destination, id: "trip_destination" %>
   <%= f.input :date %>
 
   <%= f.button :submit, "Update", class: "btn btn-primary" %>

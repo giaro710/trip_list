@@ -34,6 +34,9 @@ gem 'devise'
 # Pundit
 gem 'pundit'
 
+# Geocoder
+gem 'geocoder'
+
 
 # Cloudinary
 gem 'cloudinary', '~> 1.12.0'
