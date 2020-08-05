@@ -9,7 +9,8 @@
            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     <div class="info">
       <p><%= @trip.destination %></p>
-      <p><%= @trip.date %></p>
+      <p><%= @trip.start_date %></p>
+      <p><%= @trip.end_date %></p>
       <p><%= @trip.longitude %></p>
       <p><%= @trip.latitude %></p>
       <p><%= @markers %></p>
