@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   get '/profile', to: "pages#profile"
+  resources :suitcases, except: [:index, :show]
 
   resources :trips
 end

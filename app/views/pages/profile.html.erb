@@ -1,26 +1,50 @@
-<% if user_signed_in? %>
-  <h1><%= current_user.first_name %></h1>
+<div class="container">
 
-  <h1><%= current_user.last_name %></h1>
 
-  <h1><%= current_user.email %></h1>
+  <div class="row">
+    <div class="col-6">
+      <% if user_signed_in? %>
+        <h1>Profile</h1>
 
-  <% if current_user.photo.attached? %>
-    <div>
-      <%= cl_image_tag(current_user.photo.key,
-            width: 320, height: 320, crop: :fill, radius: :max, background: "white") %>
+        <h2><%= current_user.first_name %></h2>
+
+        <h2><%= current_user.last_name %></h2>
+
+        <h2><%= current_user.email %></h2>
+
+        <% if current_user.photo.attached? %>
+          <div>
+            <%= cl_image_tag(current_user.photo.key,
+                  width: 320, height: 320, crop: :fill, radius: :max, background: "white") %>
+          </div>
+        <% else %>
+          <div>
+            <%= cl_image_tag "no-user-image-square_xfjjjx", width: 320, height: 320, crop: :fill, radius: :max, background: "#7dc2af" %>
+          </div>
+
+        <% end %>
+
+        <%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary"  %>
+
+
+      <% else %>
+
+        <p>Please login</p>
+
+      <% end %>
+
     </div>
-  <% else %>
-    <div>
-      <%= cl_image_tag "no-user-image-square_xfjjjx", width: 320, height: 320, crop: :fill, radius: :max, background: "#7dc2af" %>
+    <div class="col-6">
+      <h2>Suitcases</h2>
+      <%= link_to "New", new_suitcase_path, class: "btn btn-primary" %>
+      <% current_user.suitcases.each do |suitcase| %>
+        <div>
+          <p><%= suitcase.name %></p>
+          <%= link_to "Edit", edit_suitcase_path(suitcase), class: "btn btn-secondary"  %>
+          <%= link_to "Delete", suitcase_path(suitcase), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"  %>
+        </div>
+      <% end %>
     </div>
+  </div>
 
-  <% end %>
-
-  <%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary"  %>
-<% else %>
-
-  <p>Please login</p>
-
-<% end %>
-
+</div>

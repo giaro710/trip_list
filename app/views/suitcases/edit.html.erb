@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h2>Edit a suitcase</h2>
+
+  <%= simple_form_for(@suitcase) do |f| %>
+    <%= f.input :name %>
+
+    <%= f.button :submit, "Create", class: "btn btn-primary" %>
+
+  <% end %>
+
+  <%= link_to "< Back", profile_path, class: "btn btn-secondary"  %>
+</div>
+
