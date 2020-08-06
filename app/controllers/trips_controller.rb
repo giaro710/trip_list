@@ -33,7 +33,7 @@ class TripsController < ApplicationController
     authorize @trip
 
     if @trip.save
-      redirect_to trips_path
+      redirect_to "trips_path"
     else
       render :new
     end
@@ -67,6 +67,6 @@ class TripsController < ApplicationController
   end
 
   def trip_params
-    params.require(:trip).permit(:name, :destination, :date)
+    params.require(:trip).permit(:name, :destination, :start_date, :end_date)
   end
 end

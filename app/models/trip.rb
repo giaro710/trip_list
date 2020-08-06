@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   belongs_to :user
 
   #Validations
-  validates :name, :destination, :date, presence: true
+  validates :name, :destination,:start_date, :end_date, presence: true
   validates :name, uniqueness: true
   validates :name, length: { in: 1..20 }
 

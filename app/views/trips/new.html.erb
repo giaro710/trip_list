@@ -5,7 +5,8 @@
   <%= simple_form_for(@trip) do |f| %>
     <%= f.input :name %>
     <%= f.input :destination, id: "trip_destination" %>
-    <%= f.input :date %>
+    <%= f.input :start_date, as: :string, input_html: { id: "start-date" } %>
+    <%= f.input :end_date, as: :string, input_html: { id: "end-date" } %>
 
     <%= f.button :submit, "Create", class: "btn btn-primary" %>
 
