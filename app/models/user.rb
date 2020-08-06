@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :trips
 
+  has_many :lists, through: :trips
+
 
 
   has_one_attached :photo

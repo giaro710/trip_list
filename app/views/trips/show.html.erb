@@ -32,7 +32,19 @@
     </div>
   </div>
 
+  <hr><hr><hr>
+  <h1>Lists</h1>
 
+  <%= link_to "Add a list", new_trip_list_path(@trip, @list), class: "btn btn-primary" %>
+
+  <% @trip.lists.each do |list| %>
+    <div style="border:3px solid black; width:500px; height: 800px;" class="mb-5 p-3">
+      <h3>#<%= list.title %></h3>
+      <%= link_to "Edit list", edit_trip_list_path(@trip, list), class: "btn btn-secondary" %>
+      <%= link_to "Delete list", list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      <hr>
+    </div>
+  <% end %>
 
 
 
