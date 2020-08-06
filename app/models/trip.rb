@@ -2,6 +2,8 @@ class Trip < ApplicationRecord
   # Associations
   belongs_to :user
 
+  has_many :lists, dependent: :destroy
+
   #Validations
   validates :name, :destination,:start_date, :end_date, presence: true
   validates :name, uniqueness: true

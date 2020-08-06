@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   get '/profile', to: "pages#profile"
   resources :suitcases, except: [:index, :show]
 
-  resources :trips
+
+  resources :trips do
+    resources :lists, except: [:destroy]
+  end
+
+  resources :lists, only: [:destroy]
 end
