@@ -16,4 +16,10 @@ class ItemPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  private
+
+  def admin_or_not?
+    record.user == user || user.administrator
+  end
 end

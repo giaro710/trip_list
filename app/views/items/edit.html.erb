@@ -2,7 +2,7 @@
 
   <h2>Edit a list</h2>
 
-  <%= simple_form_for [@list, @item] do |f| %>
+  <%= simple_form_for [@trip, @list, @item] do |f| %>
     <%= f.input :name %>
     <%= f.input :quantity %>
     <%= f.input :inside, as: :radio_buttons %>

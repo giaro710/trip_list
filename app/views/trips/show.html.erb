@@ -46,11 +46,15 @@
 
       <!-- ITEMS -->
       <div class="items p-3">
-        <%= link_to "Add item", new_trip_list_item_path(@trip, list, @item) %>
+        <%= link_to "Add item", new_trip_list_item_path(list.trip, list, @item), class: "mb-3" %>
+
         <% list.items.each do |item| %>
           <h5><%= item.name %></h5>
           <p><%= item.quantity %></p>
           <p><%= item.inside %></p>
+          <%= link_to "Edit item", edit_trip_list_item_path(@trip, list, item), class: "btn btn-secondary" %>
+          <%= link_to "Delete item", item_path(item), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
+          <hr>
         <% end %>
       </div>
     </div>

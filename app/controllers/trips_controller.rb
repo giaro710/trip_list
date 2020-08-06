@@ -32,7 +32,6 @@ class TripsController < ApplicationController
     @trip.user = @user
     authorize @trip
 
-    raise
     if @trip.save
       redirect_to trips_path
     else
