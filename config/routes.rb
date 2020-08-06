@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
 
   resources :trips do
-    resources :lists, except: [:destroy] do
+    resources :lists, except: [:index, :show, :destroy] do
       resources :items, except: [:destroy]
     end
   end
