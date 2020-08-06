@@ -37,12 +37,22 @@
 
   <%= link_to "Add a list", new_trip_list_path(@trip, @list), class: "btn btn-primary" %>
 
-  <% @trip.lists.each do |list| %>
+  <% @trip.lists.each do |list| %> <!-- LISTA -->
     <div style="border:3px solid black; width:500px; height: 800px;" class="mb-5 p-3">
       <h3>#<%= list.title %></h3>
       <%= link_to "Edit list", edit_trip_list_path(@trip, list), class: "btn btn-secondary" %>
       <%= link_to "Delete list", list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
       <hr>
+
+      <!-- ITEMS -->
+      <div class="items p-3">
+        <%= link_to "Add item", new_trip_list_item_path(@trip, list, @item) %>
+        <% list.items.each do |item| %>
+          <h5><%= item.name %></h5>
+          <p><%= item.quantity %></p>
+          <p><%= item.inside %></p>
+        <% end %>
+      </div>
     </div>
   <% end %>
 
