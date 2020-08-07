@@ -3,12 +3,12 @@ class ItemsController < ApplicationController
   before_action :set_list, only: [:new, :create, :edit, :update]
   before_action :set_item, only: [:edit, :update, :destroy]
 
-  def new
-    # raise
-    @trip = Trip.find(params[:trip_id])
-    @item = Item.new
-    authorize @item
-  end
+  # def new
+  #   # raise
+  #   @trip = Trip.find(params[:trip_id])
+  #   @item = Item.new
+  #   authorize @item
+  # end
 
   def create
     @item = Item.new(item_params)
@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
     authorize @item
 
     if @item.save
-      redirect_to trip_path(@list.trip)
+      redirect_to trip_path(@list.trip, anchor: "item-#{@item.id}")
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to trip_path(@item.list.trip)
+    redirect_to trip_path(@item.list.trip, anchor: "items")
   end
 
   private

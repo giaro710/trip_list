@@ -40,6 +40,9 @@ gem 'geocoder'
 # PgSearch
 gem 'pg_search', '~> 2.3.0'
 
+# Turbolinks render for remote:true
+gem 'turbolinks_render'
+
 
 
 # Cloudinary

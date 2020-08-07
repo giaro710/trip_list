@@ -35,29 +35,62 @@
   <hr><hr><hr>
   <h1>Lists</h1>
 
-  <%= link_to "Add a list", new_trip_list_path(@trip, @list), class: "btn btn-primary" %>
 
-  <% @lists.each do |list| %> <!-- LISTA -->
-    <div style="border:3px solid black; width:500px; height: 800px;" class="mb-5 p-3">
-      <h3>#<%= list.title %></h3>
-      <%= link_to "Edit list", edit_trip_list_path(@trip, list), class: "btn btn-secondary" %>
-      <%= link_to "Delete list", list_path(list), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-      <hr>
 
-      <!-- ITEMS -->
-      <div class="items p-3">
-        <%= link_to "Add item", new_trip_list_item_path(list.trip, list, @item), class: "mb-3" %>
+  <% if @lists.blank? %>
+    <p>There is no list yet</p>
 
-        <% list.items.each do |item| %>
-          <h5><%= item.name %></h5>
-          <p><%= item.quantity %></p>
-          <p><%= item.inside %></p>
-          <%= link_to "Edit item", edit_trip_list_item_path(@trip, list, item), class: "btn btn-secondary" %>
-          <%= link_to "Delete item", item_path(item), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
-          <hr>
-        <% end %>
+    <%= simple_form_for([@trip, @list], remote: true) do |f| %>
+      <%= f.input :title %>
+
+      <%= f.button :submit, "Add", class: "btn btn-primary" %>
+
+    <% end %>
+  <% else %>
+
+    <%= simple_form_for([@trip, @list], remote: true) do |f| %>
+      <%= f.input :title %>
+
+      <%= f.button :submit, "Add", class: "btn btn-primary" %>
+
+    <% end %>
+
+    <div id="lists" class="d-flex justify-content-around">
+
+    <% @lists.each do |list| %> <!-- LISTA -->
+      <div id="list-<%= list.id %>" style="border:3px solid black; width:500px; height: 800px;" class="mb-5 p-3">
+        <h3>#<%= list.title %></h3>
+        <%= link_to "Edit list", edit_trip_list_path(@trip, list), class: "btn btn-secondary" %>
+        <%= link_to "Delete list", list_path(list), method: :delete, data: { confirm: "Are you sure?" }, remote: true, class: "btn btn-danger" %>
+        <hr>
+
+        <!-- ITEMS -->
+        <div id="items" class="p-3">
+          <%= link_to "Add item", new_trip_list_item_path(list.trip, list, @item), class: "mb-3" %>
+
+          <%= simple_form_for([@trip, list, @item], remote: true) do |f| %>
+            <%= f.input :name %>
+            <%= f.input :quantity %>
+            <%= f.input :inside, as: :radio_buttons %>
+            <%= f.button :submit, "Add", class: "btn btn-primary" %>
+          <% end %>
+
+          <% list.items.each do |item| %>
+            <div id="item-<%= item.id %>" class="bordered">
+              <h5><%= item.name %></h5>
+              <p><%= item.quantity %></p>
+              <p><%= item.inside %></p>
+              <%= link_to "Edit item", edit_trip_list_item_path(@trip, list, item), class: "btn btn-secondary" %>
+              <%= link_to "Delete item", item_path(item), method: :delete, remote: true, data: { confirm: "Are you sure?"}, class: "btn btn-danger" %>
+            </div>
+          <% end %>
+        </div>
       </div>
+    <% end %>
+
     </div>
+
+
   <% end %>
 
 
