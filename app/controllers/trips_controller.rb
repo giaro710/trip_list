@@ -5,7 +5,12 @@ class TripsController < ApplicationController
 
   def index
     # @trips = Trip.all
-    @trips = policy_scope(Trip)
+
+    if params[:query].present?
+      @trips = policy_scope(Trip).search_by_trip_name_and_destination(params[:query]).with_pg_search_highlight
+    else
+      @trips = policy_scope(Trip)
+    end
 
     @markers = @trips.map do |trip|
       {
@@ -16,10 +21,15 @@ class TripsController < ApplicationController
   end
 
   def show
-    # @markers = {
-    #   lat: @trip.latitude,
-    #   lng: @trip.longitude
-    # }
+
+    @markers = Trip.where(id: @trip.id).map do |trip|
+      {
+        lat: trip.latitude,
+        lng: trip.longitude
+      }
+    end
+
+    @lists = List.where(trip: @trip)
   end
 
   def new

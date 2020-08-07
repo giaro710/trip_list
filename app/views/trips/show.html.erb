@@ -37,7 +37,7 @@
 
   <%= link_to "Add a list", new_trip_list_path(@trip, @list), class: "btn btn-primary" %>
 
-  <% @trip.lists.each do |list| %> <!-- LISTA -->
+  <% @lists.each do |list| %> <!-- LISTA -->
     <div style="border:3px solid black; width:500px; height: 800px;" class="mb-5 p-3">
       <h3>#<%= list.title %></h3>
       <%= link_to "Edit list", edit_trip_list_path(@trip, list), class: "btn btn-secondary" %>

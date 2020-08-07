@@ -37,6 +37,10 @@ gem 'pundit'
 # Geocoder
 gem 'geocoder'
 
+# PgSearch
+gem 'pg_search', '~> 2.3.0'
+
+
 
 # Cloudinary
 gem 'cloudinary', '~> 1.12.0'

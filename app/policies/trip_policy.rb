@@ -2,9 +2,9 @@ class TripPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.administrator?
-        scope.all
+        scope.all.order(created_at: :desc)
       else
-        scope.where(user: user).geocoded
+        scope.where(user: user).geocoded.order(created_at: :desc)
       end
     end
   end
