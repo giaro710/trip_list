@@ -2,6 +2,15 @@
   <h1>All Trips</h1>
   <p><%= @user.first_name %> <%= @user.last_name %>, <%= @user.administrator %></p>
 
+  <%= form_tag trips_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Find a trip"
+    %>
+    <%= submit_tag "Search", class: "btn btn-warning" %>
+  <% end %>
+
   <%= link_to "New trip", new_trip_path, class: "btn btn-primary"  %>
   <br><br><br>
   <% @trips.each do |trip| %>
