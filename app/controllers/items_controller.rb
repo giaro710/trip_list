@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to trip_path(@list.trip, anchor: "item-#{@item.id}")
     else
-      render :new
+      redirect_to trip_path(@trip, anchor: "items")
     end
   end
 
