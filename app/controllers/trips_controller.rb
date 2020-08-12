@@ -30,6 +30,10 @@ class TripsController < ApplicationController
     end
 
     @lists = List.where(trip: @trip)
+
+    @list = List.new
+
+    @item = Item.new
   end
 
   def new

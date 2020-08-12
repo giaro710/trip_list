@@ -12,10 +12,10 @@ class ListsController < ApplicationController
   # def show
   # end
 
-  def new
-    @list = List.new
-    authorize @list
-  end
+  # def new
+  #   @list = List.new
+  #   authorize @list
+  # end
 
   def create
     @list = List.new(list_params)
@@ -23,9 +23,9 @@ class ListsController < ApplicationController
     authorize @list
 
     if @list.save
-      redirect_to trip_path(@trip)
+      redirect_to trip_path(@trip, anchor: "list-#{@list.id}")
     else
-      render :new
+      render "trips/show", anchor: "lists"
     end
   end
 
@@ -42,7 +42,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to trip_path(@list.trip)
+    redirect_to trip_path(@list.trip, anchor: "lists")
   end
 
   private
