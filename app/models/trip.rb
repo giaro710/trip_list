@@ -15,6 +15,7 @@ class Trip < ApplicationRecord
 
   # PgSearch
   include PgSearch::Model
+
   pg_search_scope :search_by_trip_name_and_destination,
     against: [
       [:name, 'A'],
