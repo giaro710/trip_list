@@ -25,28 +25,31 @@
       <br><br><br>
 
       <% if @trips.blank? %>
-        <p>No results found for '<%= params[:query] %>'. Try another word</p>
-      <% else %>
-      <% end %>
-
-
-
-      <% @trips.each do |trip| %>
-        <div>
-          <%= link_to trip.name, trip_path(trip) %>
-          <p><strong><%= trip.destination %></strong></p>
-          <p><%= trip.latitude %></p>
-          <p><%= trip.longitude %></p>
-          <p><%= @markers %></p>
+        <div class="container text-center p-3 m-4" style="border: 2px solid grey; border-radius: 8px;">
+          <p>No results found for '<%= params[:query] %>'. Try another word</p>
         </div>
+      <% else %>
+
+        <% @trips.each do |trip| %>
+          <div>
+            <%= link_to trip.name, trip_path(trip) %>
+            <p><strong><%= trip.destination %></strong></p>
+            <p><%= trip.latitude %></p>
+            <p><%= trip.longitude %></p>
+            <p><%= @markers %></p>
+          </div>
+        <% end %>
+
+        <br>
+
+        <div id="map"
+             style="width: 100%; height: 600px; border: solid 5px grey;"
+             data-markers="<%= @markers.to_json %>"
+             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
       <% end %>
 
-      <br>
 
-      <div id="map"
-           style="width: 100%; height: 600px; border: solid 5px grey;"
-           data-markers="<%= @markers.to_json %>"
-           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
   <% end %>
 
