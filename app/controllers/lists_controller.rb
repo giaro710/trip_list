@@ -25,7 +25,7 @@ class ListsController < ApplicationController
     if @list.save
       redirect_to trip_path(@trip, anchor: "list-#{@list.id}")
     else
-      render "trips/show", anchor: "lists"
+      render "trips/show"  # , anchor: "lists"
     end
   end
 

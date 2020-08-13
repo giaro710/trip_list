@@ -7,7 +7,7 @@ const initClearButton = () => {
   const searchButton = document.getElementById("search-button");
   console.log(searchButton);
 
-  searchButton.addEventListener
+  // searchButton.addEventListener
 
 
 
