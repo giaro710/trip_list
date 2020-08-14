@@ -1,32 +1,56 @@
 <div class="container">
   <h1>All Trips</h1>
-  <p><%= @user.first_name %> <%= @user.last_name %>, <%= @user.administrator %></p>
 
-  <%= form_tag trips_path, method: :get, id: "search-form" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Find a trip"
-    %>
-    <%= submit_tag "Search", id: "search-button", class: "btn btn-warning" %>
+  <% if @trips.blank? && params[:query].present? == false %>
+    <p>No trips yet</p>
+    <%= link_to "New trip", new_trip_path, class: "btn btn-primary mt-5"  %>
+
+    <% else %>
+
+      <p><%= @user.first_name %> <%= @user.last_name %>, <%= @user.administrator %></p>
+
+      <%= form_tag trips_path, method: :get, id: "search-form" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a trip"
+        %>
+        <%= submit_tag "Search", id: "search-button", class: "btn btn-warning" %>
+      <% end %>
+
+
+
+
+      <%= link_to "New trip", new_trip_path, class: "btn btn-primary mt-5"  %>
+      <br><br><br>
+
+      <% if @trips.blank? %>
+        <div class="container text-center p-3 m-4" style="border: 2px solid grey; border-radius: 8px;">
+          <p>No results found for '<%= params[:query] %>'. Try another word</p>
+        </div>
+      <% else %>
+
+        <% @trips.each do |trip| %>
+          <div>
+            <%= link_to trip.name, trip_path(trip) %>
+            <p><strong><%= trip.destination %></strong></p>
+            <p><%= trip.latitude %></p>
+            <p><%= trip.longitude %></p>
+            <p><%= @markers %></p>
+          </div>
+        <% end %>
+
+        <br>
+
+        <div id="map"
+             style="width: 100%; height: 600px; border: solid 5px grey;"
+             data-markers="<%= @markers.to_json %>"
+             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+      <% end %>
+
+
+
   <% end %>
 
-  <%= link_to "New trip", new_trip_path, class: "btn btn-primary mt-5"  %>
-  <br><br><br>
-  <% @trips.each do |trip| %>
-    <div>
-      <%= link_to trip.name, trip_path(trip) %>
-      <p><%= trip.latitude %></p>
-      <p><%= trip.longitude %></p>
-      <p><%= @markers %></p>
-    </div>
-  <% end %>
-
-  <br>
-
-  <div id="map"
-       style="width: 100%; height: 600px; border: solid 5px grey;"
-       data-markers="<%= @markers.to_json %>"
-       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-</div>
+</div> <!-- fine del container principale -->

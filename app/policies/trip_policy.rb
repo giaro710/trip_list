@@ -4,7 +4,7 @@ class TripPolicy < ApplicationPolicy
       if user.administrator?
         scope.all.order(created_at: :desc)
       else
-        scope.where(user: user).geocoded.order(created_at: :desc)
+        scope.where(user: user).geocoded # .order(created_at: :desc)
       end
     end
   end

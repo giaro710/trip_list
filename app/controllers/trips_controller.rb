@@ -7,9 +7,9 @@ class TripsController < ApplicationController
     # @trips = Trip.all
 
     if params[:query].present?
-      @trips = policy_scope(Trip).search_by_trip_name_and_destination(params[:query]).with_pg_search_highlight
+      @trips = policy_scope(Trip).search_by_trip_name_and_destination(params[:query])  # .with_pg_search_highlight
     else
-      @trips = policy_scope(Trip)
+      @trips = policy_scope(Trip).order(created_at: :desc)
     end
 
     @markers = @trips.map do |trip|
