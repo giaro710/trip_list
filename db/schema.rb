@@ -54,22 +54,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_175355) do
     t.index ["trip_id"], name: "index_lists_on_trip_id"
   end
 
-  create_table "luggages", force: :cascade do |t|
-    t.string "name"
-    t.bigint "trip_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["trip_id"], name: "index_luggages_on_trip_id"
-  end
-
-  create_table "suicases", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_suicases_on_user_id"
-  end
-
   create_table "suitcases", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
@@ -109,8 +93,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_175355) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "lists"
   add_foreign_key "lists", "trips"
-  add_foreign_key "luggages", "trips"
-  add_foreign_key "suicases", "users"
   add_foreign_key "suitcases", "users"
   add_foreign_key "trips", "users"
 end
